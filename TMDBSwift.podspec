@@ -22,12 +22,15 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/gkye/TheMovieDatabaseSwiftWrapper"
   s.license          = 'MIT'
   s.author           = { "George Kye" => "gkye@live.ca" }
-  s.source           = { :git => "https://github.com/gkye/TheMovieDatabaseSwiftWrapper.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/2CodersStudio/TheMovieDatabaseSwiftWrapper.git", :branch => "develop" }
   s.social_media_url = 'https://twitter.com/kyegeorge'
 
   s.ios.deployment_target = '8.0'
-  s.tvos.development_target = '10.0'
+  s.tvos.deployment_target = '9.0'
 
   s.source_files = 'Sources/**/*'
 
 end
+
+
+
