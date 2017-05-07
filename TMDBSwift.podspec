@@ -26,6 +26,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/kyegeorge'
 
   s.ios.deployment_target = '8.0'
+  s.tvos.development_target = '10.0'
 
   s.source_files = 'Sources/**/*'
 
