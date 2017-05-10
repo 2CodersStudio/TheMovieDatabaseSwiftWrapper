@@ -9,10 +9,10 @@
 import Foundation
 extension Client{
   
-  static func networks(_ api_key: String!, networkId: Int!, completion: @escaping (ClientReturn) -> ()) -> (){
+  static func networks(_ api_key: String!, networkId: Int!, completion: @escaping (ClientReturn) -> ()) -> URLSessionTask{
     let parameters: [String : AnyObject] = ["api_key": api_key as AnyObject]
     let url = "https://api.themoviedb.org/3/network/" + String(networkId)
-    networkRequest(url: url, parameters: parameters, completion: {
+    return networkRequest(url: url, parameters: parameters, completion: {
       apiReturn in
       
       completion(apiReturn)

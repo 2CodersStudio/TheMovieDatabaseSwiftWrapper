@@ -9,14 +9,14 @@
 import Foundation
 extension Client{
     
-    static func Collection(_ api_key: String!, collectionId: String!, language: String?, completion: @escaping (ClientReturn) -> ()) -> (){
+    static func Collection(_ api_key: String!, collectionId: String!, language: String?, completion: @escaping (ClientReturn) -> ()) -> URLSessionTask{
         var parameters: [String : AnyObject] = ["api_key": api_key as AnyObject]
         if(language != nil){
             parameters["language"] = language as AnyObject?
         }
         
         let url = "https://api.themoviedb.org/3/collection/" + collectionId
-        networkRequest(url: url, parameters: parameters, completion: {
+        return networkRequest(url: url, parameters: parameters, completion: {
             apiReturn in
             completion(apiReturn)
         })

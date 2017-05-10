@@ -8,7 +8,7 @@
 
 import Foundation
 extension Client{
-  static func Search(_ urlType: String!, api_key: String!, query: String, page: Int?, language: String?, include_adult: Bool?, year: Int?, primary_release_year: Int?, search_type: String?, first_air_date_year: String?, completion: @escaping (ClientReturn) -> ()) -> (){
+  static func Search(_ urlType: String!, api_key: String!, query: String, page: Int?, language: String?, include_adult: Bool?, year: Int?, primary_release_year: Int?, search_type: String?, first_air_date_year: String?, completion: @escaping (ClientReturn) -> ()) -> URLSessionTask{
     
     var parameters: [String : AnyObject] = ["api_key": api_key as AnyObject, "query": query as AnyObject]
     
@@ -48,7 +48,7 @@ extension Client{
     }
     
     let url = "https://api.themoviedb.org/3/search/" + urlType
-    networkRequest(url: url, parameters: parameters, completion: {
+    return networkRequest(url: url, parameters: parameters, completion: {
       apiReturn in
       completion(apiReturn)
     })

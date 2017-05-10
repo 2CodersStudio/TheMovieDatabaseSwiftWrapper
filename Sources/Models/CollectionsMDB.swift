@@ -32,8 +32,8 @@ public struct CollectionMDB: ArrayObject{
   }
   
   ///Get the basic collection information for a specific collection id.
-  public static func collection(_ api_key: String!, collectionId: Int!, language: String? = nil, completion: @escaping (_ clientReturn: ClientReturn, _ data: CollectionMDB?) -> ()) -> (){
-    Client.Collection(api_key, collectionId: String(collectionId), language: language){
+  public static func collection(_ api_key: String!, collectionId: Int!, language: String? = nil, completion: @escaping (_ clientReturn: ClientReturn, _ data: CollectionMDB?) -> ()) -> URLSessionTask{
+    return Client.Collection(api_key, collectionId: String(collectionId), language: language){
       apiReturn in
       if(apiReturn.error == nil){
         completion(apiReturn, CollectionMDB(results: apiReturn.json!))
@@ -44,8 +44,8 @@ public struct CollectionMDB: ArrayObject{
   }
   
   ///Get all of the images for a particular collection by collection id.
-  public static func collectionImages(_ api_key: String!, collectionId: Int!, language: String?, completion:  @escaping (_ clientReturn: ClientReturn, _ data: ImagesMDB?) -> ()) -> (){
-    Client.Collection(api_key, collectionId:  String(collectionId) + "/images", language: language){
+  public static func collectionImages(_ api_key: String!, collectionId: Int!, language: String?, completion:  @escaping (_ clientReturn: ClientReturn, _ data: ImagesMDB?) -> ()) -> URLSessionTask{
+    return Client.Collection(api_key, collectionId:  String(collectionId) + "/images", language: language){
       apiReturn in
       if(apiReturn.error == nil){
         completion(apiReturn, ImagesMDB.init(results: apiReturn.json!))

@@ -9,7 +9,7 @@
 import Foundation
 
 extension Client{
-  static func TV(_ urlType: String!, api_key: String!, page: Int?, language: String?, timezone: String?, append_to: [String]? = nil, completion: @escaping (ClientReturn) -> ()) -> (){
+  static func TV(_ urlType: String!, api_key: String!, page: Int?, language: String?, timezone: String?, append_to: [String]? = nil, completion: @escaping (ClientReturn) -> ()) -> URLSessionTask{
     
     var parameters: [String : AnyObject] = ["api_key": api_key as AnyObject]
     if(page != nil){
@@ -26,7 +26,7 @@ extension Client{
     }
     
     let url = "https://api.themoviedb.org/3/tv/" + urlType    
-    networkRequest(url: url, parameters: parameters, completion: {
+    return networkRequest(url: url, parameters: parameters, completion: {
       apiReturn in
       completion(apiReturn)
     })

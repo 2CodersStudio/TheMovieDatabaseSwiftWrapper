@@ -8,14 +8,14 @@
 
 import Foundation
 extension Client{
-  static func Seasons(_ urlType: String!, api_key: String!, language: String?, completion: @escaping (ClientReturn) -> ()) -> (){
+  static func Seasons(_ urlType: String!, api_key: String!, language: String?, completion: @escaping (ClientReturn) -> ()) -> URLSessionTask{
     var parameters: [String : AnyObject] = ["api_key": api_key as AnyObject]
     if(language != nil){
       parameters["language"] = language as AnyObject?
     }
     
     let url = "https://api.themoviedb.org/3/tv/" + urlType
-    networkRequest(url: url, parameters: parameters, completion: {
+    return networkRequest(url: url, parameters: parameters, completion: {
       apiReturn in
       completion(apiReturn)
     })

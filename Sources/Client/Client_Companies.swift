@@ -10,17 +10,17 @@ import Foundation
 
 extension Client{
   
-  static func Company(_ api_key: String!, companyId: Int!, completion: @escaping (ClientReturn) -> ()) -> (){
+  static func Company(_ api_key: String!, companyId: Int!, completion: @escaping (ClientReturn) -> ()) -> URLSessionTask{
     let parameters: [String : AnyObject] = ["api_key": api_key as AnyObject]
     let url = "https://api.themoviedb.org/3/company/" + String(companyId)
-    networkRequest(url: url, parameters: parameters, completion: {
+   return networkRequest(url: url, parameters: parameters, completion: {
       apiReturn in
       
       completion(apiReturn)
     })
   }
   
-  static func Company(_ api_key: String!, companyId: Int!, language: String?, page: Int?, completion: @escaping (ClientReturn) -> ()) -> (){
+  static func Company(_ api_key: String!, companyId: Int!, language: String?, page: Int?, completion: @escaping (ClientReturn) -> ()) -> URLSessionTask{
     var parameters: [String : AnyObject] = ["api_key": api_key as AnyObject]
     if(page != nil){
       parameters["page"] = page as AnyObject?
@@ -31,7 +31,7 @@ extension Client{
     }
     
     let url = "https://api.themoviedb.org/3/company/" + String(companyId) + "/movies"
-    networkRequest(url: url, parameters: parameters, completion: {
+   return networkRequest(url: url, parameters: parameters, completion: {
       apiReturn in
       
       completion(apiReturn)

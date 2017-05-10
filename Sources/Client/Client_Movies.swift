@@ -9,7 +9,7 @@
 import Foundation
 extension Client{
   
-  static func Movies(_ urlType: String!, api_key: String!, page: Int?, language: String?, append_to: [String]? = nil, completion: @escaping (ClientReturn) -> ()) -> (){
+  static func Movies(_ urlType: String!, api_key: String!, page: Int?, language: String?, append_to: [String]? = nil, completion: @escaping (ClientReturn) -> ()) -> URLSessionTask{
     
     var parameters: [String : AnyObject] = ["api_key": api_key as AnyObject]
     
@@ -34,7 +34,7 @@ extension Client{
     
     
     let url = "https://api.themoviedb.org/3/movie/" + urlType
-    networkRequest(url: url, parameters: parameters, completion: {
+    return networkRequest(url: url, parameters: parameters, completion: {
       apiReturn in
       completion(apiReturn)
     })

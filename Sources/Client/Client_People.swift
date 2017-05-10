@@ -10,7 +10,7 @@ import Foundation
 
 extension Client{
   
-  static func Person(_ urlType: String!, api_key: String!, language: String?, page: Int?, append_to: [String]? = nil, completion: @escaping (ClientReturn) -> ()) -> (){
+  static func Person(_ urlType: String!, api_key: String!, language: String?, page: Int?, append_to: [String]? = nil, completion: @escaping (ClientReturn) -> ()) -> URLSessionTask{
     let url = "https://api.themoviedb.org/3/person/" + urlType
     var parameters: [String : AnyObject] = ["api_key": api_key as AnyObject]
     if(language != nil){ parameters["language"] = language as AnyObject? }
@@ -19,7 +19,7 @@ extension Client{
       parameters["append_to_response"] = append_to?.joined(separator: ",") as AnyObject?
     }
     
-    networkRequest(url: url, parameters: parameters, completion: {
+    return networkRequest(url: url, parameters: parameters, completion: {
       apiReturn in
       
       completion(apiReturn)

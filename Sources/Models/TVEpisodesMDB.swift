@@ -50,9 +50,9 @@ public struct TVEpisodesMDB: ArrayObject {
   
   
   ///Get the primary information about a TV episode by combination of a season and episode number.
-  public static func episode_number(_ api_key: String, tvShowId: Int!, seasonNumber: Int!, episodeNumber: Int!, language: String?, completion: @escaping (_ clientReturn: ClientReturn, _ data: TVEpisodesMDB) -> ()) -> (){
+  public static func episode_number(_ api_key: String, tvShowId: Int!, seasonNumber: Int!, episodeNumber: Int!, language: String?, completion: @escaping (_ clientReturn: ClientReturn, _ data: TVEpisodesMDB) -> ()) -> URLSessionTask{
     let urltype = String(tvShowId) + "/season/" + String(seasonNumber) + "/episode/" + String(episodeNumber)
-    Client.Seasons(urltype, api_key: api_key, language: language){
+    return Client.Seasons(urltype, api_key: api_key, language: language){
       apiReturn in
       completion(apiReturn, TVEpisodesMDB(results: apiReturn.json!))
       
@@ -60,9 +60,9 @@ public struct TVEpisodesMDB: ArrayObject {
   }
   
   ///Get the TV episode credits by combination of season and episode number.
-  public static func credits(_ api_key: String, tvShowId: Int!, seasonNumber: Int!, episodeNumber: Int!, completion: @escaping (_ clientReturn: ClientReturn, _ data: TVCreditsMDB?) -> ()) -> (){
+  public static func credits(_ api_key: String, tvShowId: Int!, seasonNumber: Int!, episodeNumber: Int!, completion: @escaping (_ clientReturn: ClientReturn, _ data: TVCreditsMDB?) -> ()) -> URLSessionTask{
     let urltype = String(tvShowId) + "/season/" + String(seasonNumber) + "/episode/" + String(episodeNumber) + "/credits"
-    Client.Seasons(urltype, api_key: api_key, language: nil){
+    return Client.Seasons(urltype, api_key: api_key, language: nil){
       apiReturn in
       var data: TVCreditsMDB?
       if(apiReturn.error == nil){
@@ -73,9 +73,9 @@ public struct TVEpisodesMDB: ArrayObject {
   }
   
   ///Get the external ids for a TV episode by comabination of a season and episode number.
-  public static func externalIDS(_ api_key: String, tvShowId: Int!, seasonNumber: Int!, episodeNumber: Int, language: String, completion: @escaping (_ clientReturn: ClientReturn, _ data: ExternalIdsMDB?) -> ()) -> (){
+  public static func externalIDS(_ api_key: String, tvShowId: Int!, seasonNumber: Int!, episodeNumber: Int, language: String, completion: @escaping (_ clientReturn: ClientReturn, _ data: ExternalIdsMDB?) -> ()) -> URLSessionTask{
     let urltype = String(tvShowId) + "/season/" + String(seasonNumber) + "/episode/" + String(episodeNumber) + "/external_ids"
-    Client.Seasons(urltype, api_key: api_key, language: language){
+    return Client.Seasons(urltype, api_key: api_key, language: language){
       apiReturn in
       var data: ExternalIdsMDB?
       if(apiReturn.error == nil){
@@ -86,9 +86,9 @@ public struct TVEpisodesMDB: ArrayObject {
   }
   
   ///Get the images (episode stills) for a TV episode by combination of a season and episode number. Since episode stills don't have a language, this call will always return all images. **ONLY `stills` retuned from ImagesMDB (`posters` & `backdrops` will be empty)**
-  public static func images(_ api_key: String, tvShowId: Int!, seasonNumber: Int!, episodeNumber: Int!, completion: @escaping (_ clientReturn: ClientReturn, _ data: ImagesMDB?) -> ()) -> (){
+  public static func images(_ api_key: String, tvShowId: Int!, seasonNumber: Int!, episodeNumber: Int!, completion: @escaping (_ clientReturn: ClientReturn, _ data: ImagesMDB?) -> ()) -> URLSessionTask{
     let urltype = String(tvShowId) + "/season/" + String(seasonNumber) + "/episode/" + String(episodeNumber) + "/images"
-    Client.Seasons(urltype, api_key: api_key, language: nil){
+    return Client.Seasons(urltype, api_key: api_key, language: nil){
       apiReturn in
       var data: ImagesMDB?
       if(apiReturn.error == nil){
@@ -99,9 +99,9 @@ public struct TVEpisodesMDB: ArrayObject {
   }
   
   ///Get the videos that have been added to a TV episode (teasers, clips, etc...)
-  public static func videos(_ api_key: String, tvShowId: Int!, seasonNumber: Int!, episodeNumber: Int!, language: String?, completion: @escaping (_ clientReturn: ClientReturn, _ data: [VideosMDB]?) -> ()) -> (){
+  public static func videos(_ api_key: String, tvShowId: Int!, seasonNumber: Int!, episodeNumber: Int!, language: String?, completion: @escaping (_ clientReturn: ClientReturn, _ data: [VideosMDB]?) -> ()) -> URLSessionTask{
     let urltype = String(tvShowId) + "/season/" + String(seasonNumber) + "/episode/" + String(episodeNumber) + "/videos"
-    Client.Seasons(urltype, api_key: api_key, language: language){
+    return Client.Seasons(urltype, api_key: api_key, language: language){
       apiReturn in
       var data: [VideosMDB]?
       if(apiReturn.error == nil){

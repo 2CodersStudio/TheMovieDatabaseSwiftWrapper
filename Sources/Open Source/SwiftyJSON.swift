@@ -792,25 +792,26 @@ extension JSON {
 //MARK: - URL
 extension JSON {
   
-  //Optional URL
-  public var URL: URL? {
-    get {
-      switch self.type {
-      case .string:
-        if let encodedString_ = self.rawString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
-          // We have to use `Foundation.URL` otherwise it conflicts with the variable name.
-          return Foundation.URL(string: encodedString_)
-        } else {
-          return nil
+    //Optional URL
+    public var URL: URL? {
+        get {
+            switch self.type {
+            case .string:
+                if let encodedString_ = self.rawString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
+                    // We have to use `Foundation.URL` otherwise it conflicts with the variable name.
+                    return Foundation.URL(string: encodedString_)
+                } else {
+                    return nil
+                }
+            default:
+                return nil
+            }
         }
-      default:
-        return nil
-      }
+        set {
+            self.object = newValue?.absoluteString ?? ""
+            
+        }
     }
-    set {
-      self.object = newValue?.absoluteString
-    }
-  }
 }
 
 // MARK: - Int, Double, Float, Int8, Int16, Int32, Int64

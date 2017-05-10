@@ -28,8 +28,8 @@ public struct ReviewsMDB{
   }
   
   ///Get the full details of a review by ID.
-  public static func review(_ api_key: String!, reviewId: String!, completion: @escaping (_ clientReturn: ClientReturn, _ data: ReviewsMDB?) -> ()) -> (){
-    Client.review(api_key, reviewId: reviewId){
+  public static func review(_ api_key: String!, reviewId: String!, completion: @escaping (_ clientReturn: ClientReturn, _ data: ReviewsMDB?) -> ()) ->URLSessionTask{
+    return Client.review(api_key, reviewId: reviewId){
       apiReturn in
       var data: ReviewsMDB?
       if(apiReturn.error == nil){

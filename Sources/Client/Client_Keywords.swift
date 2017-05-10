@@ -12,17 +12,17 @@ import Foundation
 
 
 extension Client{
-  static func keyword(_ keywordType: String, api_key: String!, completion: @escaping (ClientReturn) -> ()) -> (){
+  static func keyword(_ keywordType: String, api_key: String!, completion: @escaping (ClientReturn) -> ()) -> URLSessionTask{
     let parameters: [String : AnyObject] = ["api_key": api_key as AnyObject]
     let url = keywordType
     
-    networkRequest(url: url, parameters: parameters, completion: {
+   return  networkRequest(url: url, parameters: parameters, completion: {
       apiReturn in
       completion(apiReturn)
     })
   }
   
-  static func keyword_movies(_ keywordType: String, api_key: String!, page: Int?, language: String?, completion: @escaping (ClientReturn) -> ()) -> (){
+  static func keyword_movies(_ keywordType: String, api_key: String!, page: Int?, language: String?, completion: @escaping (ClientReturn) -> ()) -> URLSessionTask{
     var parameters: [String : AnyObject] = ["api_key": api_key as AnyObject]
     if(page != nil){
       parameters["page"] = page as AnyObject?
@@ -31,7 +31,7 @@ extension Client{
       parameters["language"] = language as AnyObject?
     }
     let url = keywordType
-    networkRequest(url: url, parameters: parameters, completion: {
+    return networkRequest(url: url, parameters: parameters, completion: {
       apiReturn in
       
       completion(apiReturn)
