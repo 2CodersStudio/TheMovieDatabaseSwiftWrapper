@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "TMDBSwift"
-  s.version          = "0.3.2.1"
+  s.version          = "0.4.2"
   s.summary          = "Swift wrapper for themoviedb.org api v3"
 
 # This description is used to generate tags and improve search results.
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/gkye/TheMovieDatabaseSwiftWrapper"
   s.license          = 'MIT'
   s.author           = { "George Kye" => "gkye@live.ca" }
-  s.source           = { :git => "https://github.com/2CodersStudio/TheMovieDatabaseSwiftWrapper.git", :branch => "develop" }
+  s.source           = { :git => "https://github.com/gkye/TheMovieDatabaseSwiftWrapper.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/kyegeorge'
 
   s.ios.deployment_target = '8.0'
@@ -31,6 +31,3 @@ Pod::Spec.new do |s|
   s.source_files = 'Sources/**/*'
 
 end
-
-
-

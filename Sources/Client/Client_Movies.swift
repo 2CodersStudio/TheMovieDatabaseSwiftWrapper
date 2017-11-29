@@ -3,18 +3,18 @@
 //  MDBSwiftWrapper
 //
 //  Created by George Kye on 2016-02-16.
-//  Copyright © 2016 George KyeKye. All rights reserved.
+//  Copyright © 2016 George Kye. All rights reserved.
 //
 
 import Foundation
 extension Client{
   
-  static func Movies(_ urlType: String!, api_key: String!, page: Int?, language: String?, append_to: [String]? = nil, completion: @escaping (ClientReturn) -> ()) -> URLSessionTask{
+  static func Movies(_ urlType: String!, page: Int?, language: String?, region: String? = nil, append_to: [String]? = nil, completion: @escaping (ClientReturn) -> ()) -> (){
     
-    var parameters: [String : AnyObject] = ["api_key": api_key as AnyObject]
+    var parameters: [String : AnyObject] = [:]
     
-    if(page != nil){
-      parameters["page"] = page as AnyObject?
+    if let pg = page{
+      parameters["page"] = pg as AnyObject?
     }
     
     if(language != nil){
@@ -28,13 +28,18 @@ extension Client{
       }
     }
     
+    
+    if let reg = region{
+      parameters["region"] = reg as AnyObject
+    }
+    
     if append_to != nil{
       parameters["append_to_response"] = append_to?.joined(separator: ",") as AnyObject?
     }
     
     
     let url = "https://api.themoviedb.org/3/movie/" + urlType
-    return networkRequest(url: url, parameters: parameters, completion: {
+    networkRequest(url: url, parameters: parameters, completion: {
       apiReturn in
       completion(apiReturn)
     })
