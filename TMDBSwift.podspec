@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/gkye/TheMovieDatabaseSwiftWrapper"
   s.license          = 'MIT'
   s.author           = { "George Kye" => "gkye@live.ca" }
-  s.source           = { :git => "https://github.com/2CodersStudio/TheMovieDatabaseSwiftWrapper.git", :branch => "develop" }
+  s.source           = { :git => "https://github.com/2CodersStudio/TheMovieDatabaseSwiftWrapper.git", :branch => "DevelopmentVersion" }
   s.social_media_url = 'https://twitter.com/kyegeorge'
 
   s.ios.deployment_target = '8.0'
